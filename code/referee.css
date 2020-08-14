@@ -1,0 +1,27 @@
+img{
+  width: 100%;
+  height: auto;
+  transform: translate(-50%, -50%);
+   
+}
+
+div{
+    height:200px;
+    width:240px
+}
+#yes{
+    position:absolute;
+    top:40%;
+    left:10%;
+    background-image: url("http://192.168.100.7:5000/static/yes.png");
+    background-size:100%;
+    background-repeat: no-repeat
+}
+#no{
+    position:absolute;
+    top:40%;
+    right:10%;
+    background-image: url("http://192.168.100.7:5000/static/no.png");
+    background-size:100%;
+    background-repeat: no-repeat
+}
