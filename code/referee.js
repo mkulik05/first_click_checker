@@ -25,24 +25,27 @@ let clicked = (yes) => {
         console.log(xhr2.responseText)
         let data = JSON.parse(xhr2.responseText)
         let name=data["sequence"][0]
-        if (yes) {
-            score=data["score"]
-            
-            if (typeof score[name] != "undefined"){
-                score[name]=parseInt(score[name])+1
+        if (typeof name != "undefined" && name != "undefined") {
+            if (yes) {
+                score=data["score"]
+                
+                    if (typeof score[name] != "undefined"){
+                        score[name]=parseInt(score[name])+1
+                    } else {
+                        score[name]='1'
+                    }
+                
+                let xhr4 = new XMLHttpRequest();
+                xhr4.open("POST", "http://192.168.100.7:5000/change_score?name="+name+"&score="+score[name]);
+                console.log(score[name])
+                    
+                xhr4.send("");
             } else {
-                score[name]='1'
+                let xhr3 = new XMLHttpRequest();
+                xhr3.open("POST", "http://192.168.100.7:5000/del_data?name="+name);
+                    
+                xhr3.send("");
             }
-            let xhr4 = new XMLHttpRequest();
-            xhr4.open("POST", "http://192.168.100.7:5000/change_score?name="+name+"&score="+score[name]);
-            console.log(score[name])
-                
-            xhr4.send("");
-        } else {
-            let xhr3 = new XMLHttpRequest();
-            xhr3.open("POST", "http://192.168.100.7:5000/del_data?name="+name);
-                
-            xhr3.send("");
         }
     }
 }

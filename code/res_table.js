@@ -5,7 +5,7 @@ let wait = () => {
     xhr2.send("");
     setTimeout(() =>{
         window.location="http://192.168.100.7:5000/static/result.html"
-    },5000)
+    },1000)
 }
 let putTextInTable = (score) => {
     for (let i=0; i<score.length; i++) {
@@ -14,6 +14,19 @@ let putTextInTable = (score) => {
     }
     wait()
 }
+
+let create_table = (score_arr) => {
+    let a = []
+    for(let i = 0; i<score_arr.length; i++) {
+        console.log("debug")
+        a.push(document.createElement("tr"))
+        a[i].innerHTML = " <td id='name"+i+"'></td><td id='score"+i+"'></td>"; 
+        table = document.getElementById("table")
+        table.appendChild(a[i]);
+    }
+    putTextInTable(score_arr)
+}
+
 
 let sort = () => {
     let xhr = new XMLHttpRequest();
@@ -35,7 +48,8 @@ let sort = () => {
             return b[1]-a[1]
         
         });
-        putTextInTable(score_arr)
+        
+        create_table(score_arr)
     }
     
 }
