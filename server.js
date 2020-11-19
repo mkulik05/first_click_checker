@@ -1,10 +1,9 @@
 const express = require('express')
-const bodyParser = require("body-parser");
 const app = express()
+var http = require('http').createServer(app);
+var io = require ('socket.io')(http);
 const port = 5000
 app.use('/static', express.static('code'));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 app.get('/', (req, res) => {
   res.redirect("/static/index.html")
   console.log("get")
@@ -26,6 +25,21 @@ app.post('/del_data', (req, res) => {
   //console.log(sequence)
   server_data["sequence"] = sequence
   res.end()
+});
+io.on('connection', (socket) => {
+  console.log('a user connected');
+
+  socket.on('user_name', (name) => {
+    console.log('message: ' + name);
+    if (!sequence.includes(name)) {
+      sequence.push(name)
+      server_data["sequence"] = sequence
+      }
+  });
+
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
 });
 
 app.post('/null', (req, res) => {
@@ -52,6 +66,6 @@ app.get('/data', (req, res) => {
    res.send(JSON.stringify(server_data));
 });
 
-app.listen(port, () => {
+http.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })

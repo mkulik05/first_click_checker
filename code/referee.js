@@ -30,9 +30,9 @@ let clicked = (yes) => {
                 score=data["score"]
                 
                     if (typeof score[name] != "undefined"){
-                        score[name]=parseInt(score[name])+1
+                        score[name]=parseInt(score[name])+parseInt(document.getElementById("selectPoints").value)
                     } else {
-                        score[name]='1'
+                        score[name]=document.getElementById("selectPoints").value
                     }
                 
                 let xhr4 = new XMLHttpRequest();
