@@ -37,29 +37,32 @@ io.on('connection', (socket) => {
       }
   });
 
+
+  socket.on('del_data', (name) => {
+    sequence.splice(0, 1);
+    server_data["sequence"] = sequence
+  })
+
+  socket.on('change_score', (scores) => {
+    console.log("change")
+    console.log(scores)
+    console.log(typeof scores)
+      score=scores
+      server_data["ready_to_redirect"]=true
+      server_data["score"] = score
+      sequence=[]
+      server_data["sequence"]=sequence
+    
+  })
+  socket.on('null', (_) => {
+    server_data["sequence"]=[]
+    server_data["ready_to_redirect"]=false
+  })
+
+
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });
-});
-
-app.post('/null', (req, res) => {
-  sequence=[]
-  server_data["sequence"]=sequence
-  server_data["ready_to_redirect"]=false
-  res.end()
-});
-
-app.post('/change_score', (req, res) => {
-
-  if (typeof req.query.name !="undefined") {
-    score[req.query.name]=req.query.score
-    server_data["ready_to_redirect"]=true
-    server_data["score"] = score
-    sequence=[]
-    server_data["sequence"]=sequence
-  }
-
-  res.end()
 });
 
 app.get('/data', (req, res) => {

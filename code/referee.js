@@ -1,3 +1,4 @@
+let socket = io();
 let recursion = () => {
     setTimeout(() => {
         let xhr = new XMLHttpRequest();
@@ -27,6 +28,7 @@ let clicked = (yes) => {
         let name=data["sequence"][0]
         if (typeof name != "undefined" && name != "undefined") {
             if (yes) {
+
                 score=data["score"]
                 
                     if (typeof score[name] != "undefined"){
@@ -34,17 +36,12 @@ let clicked = (yes) => {
                     } else {
                         score[name]=document.getElementById("selectPoints").value
                     }
-                
-                let xhr4 = new XMLHttpRequest();
-                xhr4.open("POST", "http://192.168.100.7:5000/change_score?name="+name+"&score="+score[name]);
-                console.log(score[name])
-                    
-                xhr4.send("");
+                    if (typeof name !="undefined") {
+                        socket.emit('change_score', score);
+                    }
+
             } else {
-                let xhr3 = new XMLHttpRequest();
-                xhr3.open("POST", "http://192.168.100.7:5000/del_data?name="+name);
-                    
-                xhr3.send("");
+                    socket.emit('del_data', "");
             }
         }
     }

@@ -1,11 +1,9 @@
+let socket = io();
 let wait = () => {
-    let xhr2 = new XMLHttpRequest();
-    xhr2.open("POST", "http://192.168.100.7:5000/null");
-        
-    xhr2.send("");
+    socket.emit('null', '');
     setTimeout(() =>{
         window.location="http://192.168.100.7:5000/static/result.html"
-    },1000)
+    },2000)
 }
 let putTextInTable = (score) => {
     for (let i=0; i<score.length; i++) {
