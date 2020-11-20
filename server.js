@@ -11,15 +11,6 @@ app.get('/', (req, res) => {
 let server_data={'sequence':[], 'score':{}, 'ready_to_redirect':false}
 sequence=[] 
 score={} 
-app.post('/data', (req, res) => {
-  res.send('POST request to the homepage');
-  console.log("post")
-  if (!sequence.includes(req.query.name)) {
-  sequence.push(req.query.name)
-  server_data["sequence"] = sequence
-  }
-  res.end()
-});
 app.post('/del_data', (req, res) => {
   sequence.splice(0, 1);
   //console.log(sequence)
@@ -36,7 +27,9 @@ io.on('connection', (socket) => {
       server_data["sequence"] = sequence
       }
   });
-
+  socket.on('get_data', (_msg) => {
+    io.emit('data', server_data);
+  });
 
   socket.on('del_data', (name) => {
     sequence.splice(0, 1);

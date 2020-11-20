@@ -1,30 +1,23 @@
 let socket = io();
 let recursion = () => {
     setTimeout(() => {
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', '/data');
-        xhr.send();
-        xhr.onload = () => {
-            console.log(xhr.responseText)
-        let data = JSON.parse(xhr.responseText)
-        if (typeof data["sequence"][0] != "undefined"){
-            document.getElementById("currentName").innerHTML = data["sequence"][0]
-        } else {
-            document.getElementById("currentName").innerHTML = ""
-        }
-        }
-
+        socket.emit('get_data', "");
+        socket.on('data', (data) => {
+            if (typeof data["sequence"][0] != "undefined"){
+                document.getElementById("currentName").innerHTML = data["sequence"][0]
+            } else {
+                document.getElementById("currentName").innerHTML = ""
+            }
+          });
         recursion()
     },500)
 }
+
 recursion()
+
 let clicked = (yes) => {
-    let xhr2 = new XMLHttpRequest();
-    xhr2.open('GET', '/data');
-    xhr2.send();
-    xhr2.onload = () => {
-        console.log(xhr2.responseText)
-        let data = JSON.parse(xhr2.responseText)
+    socket.emit('get_data', "");
+    socket.on('data', (data) => {
         let name=data["sequence"][0]
         if (typeof name != "undefined" && name != "undefined") {
             if (yes) {
@@ -44,6 +37,6 @@ let clicked = (yes) => {
                     socket.emit('del_data', "");
             }
         }
-    }
+      });
 }
 //document.getElementById("text").innerHTML = "some text"

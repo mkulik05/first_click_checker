@@ -27,28 +27,31 @@ let create_table = (score_arr) => {
 
 
 let sort = () => {
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', '/data');
-    xhr.send();
-    xhr.onload = () => {
-        let data = JSON.parse(xhr.responseText)
+    let sorted = false
+    socket.emit('get_data', "");
+    socket.on('data', (data) => {
         let score=data["score"]
         let values=Object.values(score)
         let keys=Object.keys(score)
         let score_arr = []
+        console.log(score)
         for(let i = 0; i<values.length; i++) {
             score_arr_min = []
             score_arr_min.push(keys[i])
             score_arr_min.push(values[i])
             score_arr.push(score_arr_min)
         }
+        console.log(score_arr)
         score_arr.sort((a, b) => {
             return b[1]-a[1]
         
         });
-        
-        create_table(score_arr)
-    }
+
+        if (!sorted){
+            create_table(score_arr)
+        }
+        sorted=true
+      });
     
 }
 sort()
