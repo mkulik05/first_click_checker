@@ -29,7 +29,7 @@ let create_table = (score_arr) => {
 let sort = () => {
     let sorted = false
     socket.emit('get_data', "");
-    socket.on('data', (data) => {
+    socket.once('data', (data) => {
         let score=data["score"]
         let values=Object.values(score)
         let keys=Object.keys(score)

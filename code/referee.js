@@ -2,7 +2,7 @@ let socket = io();
 let recursion = () => {
     setTimeout(() => {
         socket.emit('get_data', "");
-        socket.on('data', (data) => {
+        socket.once('data', (data) => {
             if (typeof data["sequence"][0] != "undefined"){
                 document.getElementById("currentName").innerHTML = data["sequence"][0]
             } else {
@@ -18,7 +18,7 @@ recursion()
 let clicked = (yes) => {
     flag=false
     socket.emit('get_data', "");
-    socket.on('data', (data) => {
+    socket.once('data', (data) => {
         let name=data["sequence"][0]
         if (typeof name != "undefined" && name != "undefined") {
             if (yes) {

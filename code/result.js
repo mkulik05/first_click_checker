@@ -2,7 +2,7 @@ let socket = io();
 let recursion = () => {
     setTimeout(() => {
         socket.emit('get_data', "");
-        socket.on('data', (data) => {
+        socket.once('data', (data) => {
             if (data["ready_to_redirect"]){
                 window.location="http://192.168.100.7:5000/static/res_table.html"
             }
