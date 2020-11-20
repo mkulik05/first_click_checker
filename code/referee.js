@@ -16,6 +16,7 @@ let recursion = () => {
 recursion()
 
 let clicked = (yes) => {
+    flag=false
     socket.emit('get_data', "");
     socket.on('data', (data) => {
         let name=data["sequence"][0]
@@ -30,11 +31,18 @@ let clicked = (yes) => {
                         score[name]=document.getElementById("selectPoints").value
                     }
                     if (typeof name !="undefined") {
-                        socket.emit('change_score', score);
+                        if (!flag){
+                            socket.emit('change_score', score);
+                            flag = true
+                        }
+                        
                     }
 
             } else {
+                if (!flag){
+                    flag = true
                     socket.emit('del_data', "");
+                }
             }
         }
       });
