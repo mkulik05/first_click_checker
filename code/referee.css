@@ -9,6 +9,24 @@ div{
     height:200px;
     width:240px
 }
+#scores{
+    display: inline-block;
+    font-size: 250%;
+
+}
+
+#currentName{
+    font-size: 400%;
+
+}
+#selectPoints{
+    display: inline-block;
+    height: 5%;
+    width: 5%;
+    font-size: 250%;
+    background-color: antiquewhite;
+
+}
 #yes{
     position:absolute;
     top:40%;

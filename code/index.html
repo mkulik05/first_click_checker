@@ -1,24 +1,13 @@
 <html>
- <head>
-  <title>LOGIN</title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="index.css">
-  <script type="text/javascript" src="http://192.168.100.7:5000/static/index.js">
-</script>
- </head>
- <body>
-<input type="text" size="40" name="name" id="nameInput" placeholder="please enter your name"/>
- <div class="form-group">
-    
-     <div class="container">
-    <div class="center">
-      <button class="btn" id="saveButton" onclick="clicked()">
- 
-        <span>SAVE</span>
-      </button>
+  <head>
+    <title>Socket.IO chat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="index.css">
+   <script type="text/javascript" src="http://192.168.100.7:5000/static/index.js"></script>
+  </head>
+  <body>
+    <div>
+      <input id="nameInput" /><button onclick="clicked()">Send</button>
     </div>
-  </div>
-</div>
- </body>
-
-</html>                  
+  </body>
+</html>
