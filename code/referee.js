@@ -32,6 +32,7 @@ let clicked = (yes) => {
                     }
                     if (typeof name !="undefined") {
                         if (!flag){
+                            socket.emit('delay', parseInt(document.getElementById("change_delay").value));
                             socket.emit('change_score', score);
                             flag = true
                         }

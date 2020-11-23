@@ -5,9 +5,15 @@ img{
    
 }
 
-div{
+.button{
     height:200px;
     width:240px
+}
+#delay_block{
+    width:100%; 
+}
+#score_block{
+    width:100%; 
 }
 #scores{
     display: inline-block;
@@ -27,6 +33,21 @@ div{
     background-color: antiquewhite;
 
 }
+#delay_text{
+    display: inline-block;
+    font-size: 250%;
+
+
+}
+#change_delay{
+    display: inline-block;
+    height: 7%;
+    width: 7%;
+    font-size: 250%;
+    background-color: antiquewhite;
+
+}
+
 #yes{
     position:absolute;
     top:40%;

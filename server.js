@@ -8,7 +8,7 @@ app.get('/', (req, res) => {
   res.redirect("/static/index.html")
   console.log("get")
 });
-let server_data={'sequence':[], 'score':{}, 'ready_to_redirect':false}
+let server_data={'sequence':[], 'score':{}, 'ready_to_redirect':false, 'delay':2000}
 sequence=[] 
 score={} 
 app.post('/del_data', (req, res) => {
@@ -31,11 +31,20 @@ io.on('connection', (socket) => {
     io.emit('data', server_data);
   });
 
+  socket.on('delay', (delay) => {
+    server_data['delay'] = delay
+  });
+
   socket.on('del_data', (name) => {
     sequence.splice(0, 1);
     server_data["sequence"] = sequence
   })
+  // socket.on('results', (scores) => {
 
+  //     server_data["ready_to_redirect"]=true
+
+    
+  // })
   socket.on('change_score', (scores) => {
     console.log("change")
     console.log(scores)
@@ -64,4 +73,5 @@ app.get('/data', (req, res) => {
 
 http.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
+  console.log(http.address())
 })

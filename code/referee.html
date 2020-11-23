@@ -10,16 +10,36 @@
  <body>
  <h1 id="currentName">
 </h1>
-<h1 id="scores">
-SCORES:</h1>
-<select id="selectPoints">
-  <option>1</option>
-  <option>2</option>
-  <option>3</option>
-  <option>4</option>
-  <option>5</option>
-</select>
- <div id="yes" onclick="clicked(true)"></div>
- <div id="no" onclick="clicked(false)"></div>
+<div id="score_block">
+  <h1 id="scores">
+    SCORES:</h1>
+    <select id="selectPoints">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>-1</option>
+    </select>
+</div>
+
+
+<div id="delay_block">
+<h1 id="delay_text">
+  TABLE DELAY:</h1>
+  <select id="change_delay">
+    <option>1</option>
+    <option>1.5</option>
+    <option>2</option>
+    <option>2.5</option>
+    <option>3</option>
+    <option>3.5</option>
+    <option>4</option>
+    <option>4.5</option>
+    <option>5</option>
+  </select>
+</div>
+ <div id="yes" class = "button" onclick="clicked(true)"></div>
+ <div id="no" class = "button" onclick="clicked(false)"></div>
  </body>
 </html>                  

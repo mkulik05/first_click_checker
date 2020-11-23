@@ -1,19 +1,19 @@
 let socket = io();
-let wait = () => {
+let wait = (delay) => {
     socket.emit('null', '');
     setTimeout(() =>{
         window.location="http://192.168.100.7:5000/static/result.html"
-    },2000)
+    },delay*1000)
 }
-let putTextInTable = (score) => {
+let putTextInTable = (score, delay) => {
     for (let i=0; i<score.length; i++) {
         document.getElementById("name"+i).innerHTML = score[i][0]
         document.getElementById("score"+i).innerHTML = score[i][1]
     }
-    wait()
+    wait(delay)
 }
 
-let create_table = (score_arr) => {
+let create_table = (score_arr,delay) => {
     let a = []
     for(let i = 0; i<score_arr.length; i++) {
         console.log("debug")
@@ -22,14 +22,16 @@ let create_table = (score_arr) => {
         table = document.getElementById("table")
         table.appendChild(a[i]);
     }
-    putTextInTable(score_arr)
+    putTextInTable(score_arr,delay)
 }
 
 
 let sort = () => {
-    let sorted = false
+    let delay;
     socket.emit('get_data', "");
     socket.once('data', (data) => {
+        delay=data["delay"];
+
         let score=data["score"]
         let values=Object.values(score)
         let keys=Object.keys(score)
@@ -47,10 +49,9 @@ let sort = () => {
         
         });
 
-        if (!sorted){
-            create_table(score_arr)
-        }
-        sorted=true
+    
+            create_table(score_arr,delay)
+
       });
     
 }
