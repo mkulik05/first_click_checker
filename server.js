@@ -20,10 +20,10 @@ Object.keys(ifaces).forEach(function (ifname) {
 
     if (alias >= 1) {
       // this single interface has multiple ipv4 addresses
-      console.log(iface.address);
+      console.log(iface.family , " ", iface.address);
     } else {
       // this interface has only one ipv4 adress
-      console.log(iface.address);
+      console.log(iface.family," ",iface.address);
     }
     ++alias;
   });
