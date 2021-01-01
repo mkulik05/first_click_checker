@@ -52,7 +52,7 @@ img{
     position:absolute;
     top:40%;
     left:10%;
-    background-image: url("http://192.168.100.7:5000/static/yes.png");
+    background-image: url("http://3.126.139.85/static/yes.png");
     background-size:100%;
     background-repeat: no-repeat
 }
@@ -60,7 +60,7 @@ img{
     position:absolute;
     top:40%;
     right:10%;
-    background-image: url("http://192.168.100.7:5000/static/no.png");
+    background-image: url("http://3.126.139.85/static/no.png");
     background-size:100%;
     background-repeat: no-repeat
 }
