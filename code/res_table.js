@@ -1,8 +1,8 @@
-let socket = io();
+let socket = io("http://3.126.139.85/");
 let wait = (delay) => {
     socket.emit('null', '');
     setTimeout(() =>{
-        window.location="http://192.168.100.7:5000/static/result.html"
+        window.location="http://3.126.139.85/static/result.html"
     },delay*1000)
 }
 let putTextInTable = (score, delay) => {

@@ -1,4 +1,4 @@
-let socket = io();
+let socket = io("http://3.126.139.85/");
 let clicked = () => {
     let url_string = window.location.href
     let url = new URL(url_string);

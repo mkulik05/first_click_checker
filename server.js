@@ -2,34 +2,7 @@ const express = require('express')
 const app = express()
 var http = require('http').createServer(app);
 var io = require ('socket.io')(http);
-const port = 5000
-
-
-
-const os = require('os');
-const ifaces = os.networkInterfaces();
-
-Object.keys(ifaces).forEach(function (ifname) {
-  var alias = 0;
-
-  ifaces[ifname].forEach(function (iface) {
-    console.log(console.log(iface.family , " ", iface.address))
-    if ('IPv4' !== iface.family || iface.internal !== false) {
-      // skip over internal (i.e. 127.0.0.1) and non-ipv4 addresses
-      return;
-    }
-
-    if (alias >= 1) {
-      // this single interface has multiple ipv4 addresses
-      console.log(iface.family , " ", iface.address);
-    } else {
-      // this interface has only one ipv4 adress
-      console.log(iface.family," ",iface.address);
-    }
-    ++alias;
-  });
-});
-
+const port = 80
 
 app.use('/static', express.static('code'));
 app.get('/', (req, res) => {
