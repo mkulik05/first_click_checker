@@ -5,6 +5,6 @@ let clicked = () => {
     let name = url.searchParams.get("name");
     send(name)    
 }
-let send = (msg) => {
+let send = (msg) => {      
       socket.emit('user_name', msg);
-    };
+    }; 
